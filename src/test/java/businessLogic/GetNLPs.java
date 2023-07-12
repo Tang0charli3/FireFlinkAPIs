@@ -31,14 +31,12 @@ public class GetNLPs {
 		header.put("sec-ch-ua", "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"");
 		header.put("sec-ch-ua-mobile", "?0");
 		header.put("sec-ch-ua-platform", "\"Windows\"");
-				String nlps=given().header("Accept","application/json").headers(header).when().get("/appmanagement/optimize/v1/nlp/").then().assertThat().statusCode(200)
-						.extract().response().asString();
-				System.out.println(nlps);
-				
-				
+		String nlps=given().header("Accept","application/json").headers(header).when().get("/appmanagement/optimize/v1/nlp/").then().assertThat().statusCode(200)
+					.extract().response().asString();
+//		System.out.println(nlps);
 		JsonPath js=new JsonPath(nlps);
 		int no=js.getInt("responseObject.size()");
-		System.out.println(no);
+//		System.out.println(no);
 		for(int i=0;i<no;i++) {
 			String searchName=js.get("responseObject["+i+"].searchName");
 			String description=js.get("responseObject["+i+"].description");
