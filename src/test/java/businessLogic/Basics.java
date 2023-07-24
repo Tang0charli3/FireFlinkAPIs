@@ -1,6 +1,7 @@
 package businessLogic;
 
 import io.restassured.RestAssured;
+
 import io.restassured.path.json.JsonPath;
 
 import static io.restassured.RestAssured.*;
@@ -47,8 +48,7 @@ public static void main(String[] args) {
 			+ "}").when().put("maps/api/place/update/json")
 	.then().assertThat().statusCode(200).extract().response().asString();
 	JsonPath jsput =new JsonPath(put);
-	System.out.println(jsput.get("msg"));
-	
+	System.out.println(jsput.get("msg").toString());
 	String get=given().queryParam("key", "qaclick123").queryParam("place_id", place_id)
 	.header("Content-Type","application/json").when().get("maps/api/place/get/json")
 	.then().assertThat().statusCode(200).extract().response().asString();
