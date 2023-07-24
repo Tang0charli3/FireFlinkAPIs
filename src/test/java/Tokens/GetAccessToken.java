@@ -44,7 +44,7 @@ public class GetAccessToken {
 		driver.findElement(By.name("emailId")).sendKeys("darshan.n@testyantra.com");
     	driver.findElement(By.name("password")).sendKeys("Password@123");
     	driver.findElement(By.xpath("//button[text()='Sign in']")).click();
-    	Thread.sleep(20000);
+    	Thread.sleep(5000);
 //		driver.get("https://app.fireflink.com/");
 		driver.quit();
 		return token;
