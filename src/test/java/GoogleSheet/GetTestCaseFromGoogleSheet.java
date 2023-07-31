@@ -20,7 +20,7 @@ public static void main(String[] args) {
 	String testSteps=js.getString("data[1][\"Test Steps\"]");
 //	System.out.println(testSteps);
 	String arr[]=testSteps.split("\n");
-	System.out.println(arr[1]);
+//	System.out.println(arr[1]);
 	for(String a:arr) {
 		System.out.println(a);
 	}

@@ -40,8 +40,8 @@ public static void main(String[] args) throws InterruptedException {
 	int no=js.getInt("responseObject.size()");
 //	System.out.println(no);
 	for(int i=0;i<no;i++) {
-		String searchName=js.get("responseObject["+i+"].searchName");
-		String description=js.get("responseObject["+i+"].description");
+		String searchName=js.get("responseObject[" + i + "].searchName");
+		String description=js.get("responseObject[" + i + "].description");
 		System.out.println("Search Name =  "+searchName + "\n" +"Description =  "+ description +"\n"+"=================================================================" );
 	}
 }
