@@ -1,6 +1,7 @@
 package Tokens;
 
 import java.util.Optional;
+import static io.restassured.RestAssured.given;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v114.network.Network;
 import org.openqa.selenium.devtools.v114.network.model.Request;
+
+import io.restassured.path.json.JsonPath;
 
 
 public class GetAccessToken {
@@ -35,6 +38,20 @@ public class GetAccessToken {
     	driver.findElement(By.xpath("//button[text()='Sign in']")).click();
     	Thread.sleep(5000);
 		driver.quit();
+//    	String email="darshan.n@testyantra.com";
+//        String password="Password@123";
+//        String body = given().header("Content-Type","text/plain").header("Accept","*/*")
+//                .header("Connection","keep-alive").header("Accept-Encoding","gzip, deflate, br")
+//                .header("Content-Type","application/json").body("" +
+//                        "{\n" +
+//                        "    \"emailId\": \""+email+"\",\n" +
+//                        "    \"password\": \""+password+"\",\n" +
+//                        "    \"lastSessionData\": \"/signin\"\n" +
+//                        "}").when().post("appmanagement/optimize/v1/public/user/signin").then().extract().response().asString();
+//        JsonPath js=new JsonPath(body);
+//        String ascces=js.get("responseObject.access_token");
+//        System.out.println(ascces);
+//        token="bearer "+ascces;
 		return token;
     }
 }
