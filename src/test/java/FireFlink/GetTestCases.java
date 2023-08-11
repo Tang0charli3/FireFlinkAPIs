@@ -2,7 +2,9 @@ package FireFlink;
 
 import static io.restassured.RestAssured.given;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import Tokens.GetAccessToken;
@@ -32,21 +34,23 @@ public static void main(String[] args) throws InterruptedException {
 	String testCases=given().param("sort", "true").headers(header).when().get("alltrees/optimize/v1/trees/modules/").then().assertThat().statusCode(200)
 				.extract().response().asString();
 	JsonPath js=new JsonPath(testCases);
+	System.out.println(testCases);
 	String tcName=js.get("responseObject.moduleTree[0].children[1].children[0].title");
 	int sizeOfResponseObject=js.getInt("responseObject.moduleTree.size()");
-	int sizeOfModuleTree=js.getInt("responseObject.moduleTree.children.size()");
 	System.out.println(tcName);
 	System.out.println(sizeOfResponseObject);
-	System.out.println(sizeOfModuleTree);
-//	for(int i=0;i<sizeOfResponseObject;i++) {
-//		int sizeOfModuleTree=js.getInt("responseObject.moduleTree");
-//		for(int j=0;j<1;i++) {
+	List tcID = new ArrayList();
+	int sizeOfModuleTree=js.getInt("responseObject.moduleTree[0].children.size()");
+	for(int i=0;i<sizeOfResponseObject;i++) {
+		for(int j=0;j<sizeOfModuleTree;i++) {
+			tcName=js.get("responseObject.moduleTree[0].children["+i+"].children["+j+"].title");
+			System.out.println(tcName);
 //			for(int k=0;k<1;k++) {
 //				for(int l=0;l<1;l++) {
 //					
 //				}
 //			}
-//		}
-//	}
+		}
+	}
 }
 }
