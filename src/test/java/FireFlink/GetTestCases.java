@@ -36,21 +36,27 @@ public static void main(String[] args) throws InterruptedException {
 	JsonPath js=new JsonPath(testCases);
 	System.out.println(testCases);
 	String tcName=js.get("responseObject.moduleTree[0].children[1].children[0].title");
-	int sizeOfResponseObject=js.getInt("responseObject.moduleTree.size()");
-	System.out.println(tcName);
-	System.out.println(sizeOfResponseObject);
+	int sizeOfResponseObject=js.getInt("responseObject.moduleTree[0].children.size()");
+//	System.out.println(tcName);
+//	System.out.println(sizeOfResponseObject);
 	List tcID = new ArrayList();
-	int sizeOfModuleTree=js.getInt("responseObject.moduleTree[0].children.size()");
+	int count=0;
 	for(int i=0;i<sizeOfResponseObject;i++) {
-		for(int j=0;j<sizeOfModuleTree;i++) {
+		int sizeOfModuleTree=js.getInt("responseObject.moduleTree[0].children["+i+"].children.size()");
+
+		for(int j=0;j<sizeOfModuleTree;j++) {
 			tcName=js.get("responseObject.moduleTree[0].children["+i+"].children["+j+"].title");
+			String key=js.get("responseObject.moduleTree[0].children["+i+"].children["+j+"].key");
+//			System.out.println(key);
+			tcID.add(key);
 			System.out.println(tcName);
-//			for(int k=0;k<1;k++) {
-//				for(int l=0;l<1;l++) {
-//					
-//				}
-//			}
+			count++;
 		}
 	}
+	for(Object id:tcID){
+		System.out.println(id.toString());
+	}
+	System.out.println(count);
+	System.out.println(tcID.size());
 }
 }
