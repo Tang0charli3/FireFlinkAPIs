@@ -8,9 +8,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebElementExtraction {
     public static void main(String[] args) {
-//        System.setProperty("webdriver.chrome.driver","C:\\Users\\user\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\user\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
         ChromeOptions options=new ChromeOptions();
-        options.setBrowserVersion(System.getenv("116.0.5845.97"));
+//        options.setBrowserVersion(System.getenv("116.0.5845.97"));
         WebDriver driver =new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.google.com/");
@@ -23,6 +23,6 @@ public class WebElementExtraction {
         System.out.println(xpath);
         System.out.println(SearchXpath.length());
         driver.findElement(By.xpath(xpath)).sendKeys("Google");
-        driver.quit();
+//        driver.quit();
     }
 }
