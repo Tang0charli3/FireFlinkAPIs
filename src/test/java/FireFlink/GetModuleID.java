@@ -1,5 +1,6 @@
 package FireFlink;
 
+import static Variables.Details.projectId;
 import static io.restassured.RestAssured.given;
 
 import java.util.ArrayList;
@@ -8,8 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 import Tokens.GetAccessToken;
+import Variables.Details;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+
 
 public class GetModuleID {
     public static void main(String[] args) throws InterruptedException {
@@ -22,7 +25,7 @@ public class GetModuleID {
         header.put("Connection", "keep-alive");
         header.put("Origin", "https://app.fireflink.com");
         header.put("Referer", "https://app.fireflink.com/");
-        header.put("projectId", "PJT1002");
+        header.put("projectId", projectId);
 //        String a=Variables.Details.
         header.put("projectType", "Web");
         String testCases=given().param("sort", "true").headers(header).when().get("alltrees/optimize/v1/trees/modules/").then().assertThat().statusCode(200)

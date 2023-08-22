@@ -7,6 +7,7 @@ import io.restassured.path.json.JsonPath;
 import java.util.HashMap;
 import java.util.Map;
 
+import static Variables.Details.projectId;
 import static io.restassured.RestAssured.given;
 
 public class GetManualTestCase {
@@ -23,7 +24,7 @@ public class GetManualTestCase {
         header.put("Sec-Fetch-Dest", "empty");
         header.put("Sec-Fetch-Mode", "cors");
         header.put("Sec-Fetch-Site", "same-site");
-        header.put("projectId", "PJT1003");
+        header.put("projectId", projectId);
         header.put("projectType", "Web");
         header.put("sec-ch-ua", "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"115\"");
         header.put("sec-ch-ua-mobile", "?0");
@@ -36,7 +37,8 @@ public class GetManualTestCase {
         int rows= js.getInt("responseObject.manualTestCase.testSteps.rows.size()");
         for(int i=0;i<rows;i++){
             String firstStep=js.get("responseObject.manualTestCase.testSteps.rows["+i+"][\"Test Steps\"]");
-            System.out.println(firstStep);
+            String expectedResult=js.get("responseObject.manualTestCase.testSteps.rows["+i+"][\"Expected Result\"]");
+            System.out.println(firstStep+"   "+"and Expected result is "+expectedResult);
         }
 
 //        given().header("")

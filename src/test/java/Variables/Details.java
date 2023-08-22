@@ -1,5 +1,6 @@
 package Variables;
 
 public class Details {
-    String projectId="PJT1002";
+    public static String projectId="PJT1003";
+
 }
