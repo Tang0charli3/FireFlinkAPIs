@@ -26,9 +26,6 @@ public class GetManualTestCase {
         header.put("Sec-Fetch-Site", "same-site");
         header.put("projectId", projectId);
         header.put("projectType", "Web");
-        header.put("sec-ch-ua", "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"115\"");
-        header.put("sec-ch-ua-mobile", "?0");
-        header.put("sec-ch-ua-platform", "\"Windows\"");
         String manualTestCase=given().headers(header).when().get("project/optimize/v1/scripts/modules/MOD1010/script/SCR1053").then().extract().response().asString();
         System.out.println(manualTestCase);
         JsonPath js=new JsonPath(manualTestCase);
