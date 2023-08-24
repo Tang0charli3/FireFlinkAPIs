@@ -10,5 +10,7 @@ public class ChromeForTesting {
         ChromeOptions options=new ChromeOptions();
         options.setBinary("C:\\Users\\user\\Downloads\\chrome-win64 (1)\\chrome-win64\\chrome.exe");
         WebDriver driver=new ChromeDriver(options);
+        driver.manage().window().maximize();
+        driver.get("https://www.google.com");
     }
 }
