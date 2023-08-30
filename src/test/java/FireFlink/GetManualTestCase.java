@@ -21,9 +21,9 @@ public class GetManualTestCase {
         header.put("Connection", "keep-alive");
         header.put("Origin", "https://app.fireflink.com");
         header.put("Referer", "https://app.fireflink.com/");
-        header.put("Sec-Fetch-Dest", "empty");
-        header.put("Sec-Fetch-Mode", "cors");
-        header.put("Sec-Fetch-Site", "same-site");
+//        header.put("Sec-Fetch-Dest", "empty");
+//        header.put("Sec-Fetch-Mode", "cors");
+//        header.put("Sec-Fetch-Site", "same-site");
         header.put("projectId", projectId);
         header.put("projectType", "Web");
         String manualTestCase=given().headers(header).when().get("project/optimize/v1/scripts/modules/MOD1010/script/SCR1053").then().extract().response().asString();

@@ -42,7 +42,7 @@ public static void main(String[] args) throws InterruptedException {
 			String key=js.get("responseObject.moduleTree[0].children["+i+"].children["+j+"].key");
 //			System.out.println(key);
 			tcID.add(key);
-			System.out.println(tcName);
+//			System.out.println(tcName);
 			count++;
 		}
 	}

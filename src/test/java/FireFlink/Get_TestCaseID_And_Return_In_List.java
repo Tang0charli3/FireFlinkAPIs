@@ -1,21 +1,20 @@
 package FireFlink;
 
-import static Variables.Details.projectId;
-import static io.restassured.RestAssured.given;
+import Tokens.GetAccessToken;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Tokens.GetAccessToken;
-import Variables.Details;
-import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
+import static Variables.Details.projectId;
+import static io.restassured.RestAssured.given;
 
-
-public class GetModuleID {
-    public static void main(String[] args) throws InterruptedException {
+public class Get_TestCaseID_And_Return_In_List {
+    public static List main() throws InterruptedException {
+        System.out.println(projectId);
         RestAssured.baseURI="https://backend1.fireflink.com";
         Map<String,Object> header = new HashMap<String,Object>();
         header.put("Accept-Language", "en-GB,en-US;q=0.9,en;q=0.8");
@@ -26,33 +25,32 @@ public class GetModuleID {
         header.put("Origin", "https://app.fireflink.com");
         header.put("Referer", "https://app.fireflink.com/");
         header.put("projectId", projectId);
-//        String a=Variables.Details.
         header.put("projectType", "Web");
         String testCases=given().param("sort", "true").headers(header).when().get("alltrees/optimize/v1/trees/modules/").then().assertThat().statusCode(200)
                 .extract().response().asString();
         JsonPath js=new JsonPath(testCases);
         System.out.println(testCases);
-
+        String tcName=js.get("responseObject.moduleTree[0].children[1].children[0].title");
         int sizeOfResponseObject=js.getInt("responseObject.moduleTree[0].children.size()");
-//	System.out.println(tcName);
-//	System.out.println(sizeOfResponseObject);
-        List<String> moduleID=new ArrayList();
+        List<String> tcID = new ArrayList();
         int count=0;
         for(int i=0;i<sizeOfResponseObject;i++) {
             int sizeOfModuleTree=js.getInt("responseObject.moduleTree[0].children["+i+"].children.size()");
 
             for(int j=0;j<sizeOfModuleTree;j++) {
-                String moduleKey=js.get("responseObject.moduleTree[0].children["+i+"].key");
-                moduleID.add(moduleKey);
-                String tcName=js.get("responseObject.moduleTree[0].children["+i+"].children["+j+"].title");
-                System.out.println(tcName);
+                tcName=js.get("responseObject.moduleTree[0].children["+i+"].children["+j+"].title");
+                String key=js.get("responseObject.moduleTree[0].children["+i+"].children["+j+"].key");
+//			System.out.println(key);
+                tcID.add(key);
+//			System.out.println(tcName);
                 count++;
             }
         }
-        for(Object id:moduleID){
+        for(Object id:tcID){
             System.out.println(id.toString());
         }
         System.out.println(count);
-        System.out.println(moduleID.size());
+        System.out.println(tcID.size());
+        return tcID;
     }
 }
